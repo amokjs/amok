@@ -1,4 +1,6 @@
 # Amok(1)
+
+[![Join the chat at https://gitter.im/caspervonb/amok](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/caspervonb/amok?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://img.shields.io/gratipay/caspervonb.svg)](https://gratipay.com/caspervonb/)
 
 [![Live Editing JavaScript with Amok](http://img.youtube.com/vi/xHXqyfkct2w/0.jpg)](http://www.youtube.com/watch?v=xHXqyfkct2w)
