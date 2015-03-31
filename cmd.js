@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
-var amok = require('./');
-var async = require('async');
-var cmd = require('commander');
-var fs = require('fs');
-var path = require('path');
-var temp = require('temp');
-var repl = require('repl');
-var util = require('util');
 
-var pkg = require('./package.json');
+var amok = require('./'),
+    async = require('async'),
+    cmd = require('commander'),
+    fs = require('fs'),
+    path = require('path'),
+    temp = require('temp'),
+    repl = require('repl'),
+    util = require('util'),
+    pkg = require('./package.json');
+
 
 cmd.usage('[options] <script>');
 
@@ -41,7 +42,9 @@ if (cmd.compiler !== false) {
   cmd.compiler = process.env['AMOK_COMPILER'];
 }
 
+
 async.auto({
+
   compiler: function(callback, data) {
     if (cmd.compiler) {
       if (cmd.verbose) {
@@ -82,6 +85,7 @@ async.auto({
       callback(null, null);
     }
   },
+
 
   watcher: ['compiler', 'bugger', function(callback, data) {
     var watcher = amok.watch(cmd, function() {
@@ -125,6 +129,7 @@ async.auto({
     });
   }],
 
+
   server: ['compiler', function(callback, data) {
     if (cmd.verbose) {
       console.info('Starting server...');
@@ -139,6 +144,7 @@ async.auto({
       callback(null, server);
     });
   }],
+
 
   client: ['server', function(callback, data) {
     if (cmd.client) {
@@ -163,6 +169,7 @@ async.auto({
     }
   }],
 
+
   bugger: ['client', function(callback, data) {
     if (cmd.verbose) {
       console.info('Attaching debugger...');
@@ -180,6 +187,7 @@ async.auto({
       callback(null, bugger);
     });
   }],
+
 
   interactor: ['bugger', function(callback, data) {
     if (cmd.interactive) {
@@ -210,6 +218,7 @@ async.auto({
       callback(null, null);
     }
   }],
+
 }, function(error) {
   if (error) {
     console.error(error);
