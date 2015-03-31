@@ -1,11 +1,12 @@
-var child = require('child_process');
-var chokidar = require('chokidar');
-var fs = require('fs');
-var http = require('http');
-var mime = require('mime');
-var path = require('path');
-var rdbg = require('rdbg');
-var util = require('util');
+var child = require('child_process'),
+    chokidar = require('chokidar'),
+    fs = require('fs'),
+    http = require('http'),
+    mime = require('mime'),
+    path = require('path'),
+    rdbg = require('rdbg'),
+    util = require('util');
+
 
 function serve(options, callback) {
   var server = http.createServer(function(request, response) {
@@ -43,6 +44,7 @@ function serve(options, callback) {
   return server;
 }
 
+
 function compile(options, callback) {
   var args = options.compiler.match(/\S+|"[^"]+"/g);
   var cmd = args.shift();
@@ -61,6 +63,7 @@ function compile(options, callback) {
   return compiler;
 }
 
+
 function watch(options, callback) {
   var files = Object.keys(options.scripts).map(function(key) {
     return path.dirname(options.scripts[key]);
@@ -76,6 +79,7 @@ function watch(options, callback) {
 
   return watcher;
 }
+
 
 function debug(options, callback) {
   var bugger = rdbg.connect(options.debuggerPort, options.debuggerHost, function(target) {
@@ -93,6 +97,7 @@ function debug(options, callback) {
   return bugger;
 }
 
+
 function open(options, callback) {
   var args = options.client.match(/\S+|"[^"]+"/g);
   var cmd = args.shift();
@@ -108,6 +113,7 @@ function open(options, callback) {
 
   return client;
 }
+
 
 module.exports.serve = serve;
 module.exports.watch = watch;
