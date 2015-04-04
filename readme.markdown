@@ -54,9 +54,6 @@ Additional features include a zero configuration http development server for dev
 --body
   inject preloaded JS into <body>
   
---div
-  inject a <div> with id="main" into <body>
-  
 -i, --interactive
   start in interactive mode
 
