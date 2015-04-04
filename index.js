@@ -28,10 +28,6 @@ function serve(options, callback) {
       if (preloadBody) {
         /* loads libraries into <body> */
         response.write('</head><body>');
-        if (options.div) {
-          /* destination for React.render() */
-          response.write('<div id="main"></div>');
-        }
       }
       for (; i < jsTotal; ++i ) {
         response.write('<script src="' + js[i] + '"></script>');
@@ -39,10 +35,6 @@ function serve(options, callback) {
       if (!preloadBody) {
         /* loads libraries into <head> */
         response.write('</head><body>');
-        if (options.div) {
-          /* destination for React.render() */
-          response.write('<div id="main"></div>');
-        }
       }
       for (var key in options.scripts) {
         response.write('<script src="' + key + '"></script>');
