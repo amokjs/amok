@@ -24,6 +24,12 @@ cmd.option('-i, --interactive', 'enable interactive mode');
 cmd.option('--client <CMD>', 'specify the client to spawn');
 cmd.option('--compiler <CMD>', 'specify the compiler to spawn');
 
+cmd.option('--css <FILE(S)>', 'comma-separated list of css files to preload');
+cmd.option('--js <FILE(S)>', 'comma-separated list of JS files to preload');
+cmd.option('--head', 'inject preloaded JS into <head> (default)');
+cmd.option('--body', 'inject preloaded JS into <body>');
+cmd.option('--div', 'inject a <div> with id="main" into <body>');
+
 cmd.option('-v, --verbose', 'enable verbose logging mode');
 
 cmd.version(pkg.version);
