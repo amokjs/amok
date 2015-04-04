@@ -41,7 +41,22 @@ Additional features include a zero configuration http development server for dev
 
 --compiler <identifier>
   specify the compiler to spawn
-
+  
+--css <FILE(S)>
+  comma-separated list of css files to preload
+  
+--js <FILE(S)>
+  comma-separated list of JS files to preload
+  
+--head
+  inject preloaded JS into <head> (default)
+  
+--body
+  inject preloaded JS into <body>
+  
+--div
+  inject a <div> with id="main" into <body>
+  
 -i, --interactive
   start in interactive mode
 
