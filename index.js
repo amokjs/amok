@@ -13,8 +13,29 @@ function serve(options, callback) {
   var server = http.createServer(function(request, response) {
     if (request.url == '/') {
       response.setHeader('content-type', 'text/html');
-      response.write('<!doctype html><head><meta charset="utf-8"></head><body>');
-
+      response.write('<!doctype html><head><meta charset="utf-8">');
+      var preloadBody = (options.body && !options.head),
+          regComma = /\, ?/g,
+          css = (options.css) ? options.css.split(regComma) : '',
+          js = (options.js) ? options.js.split(regComma) : '',
+          cssTotal = css.length,
+          jsTotal = js.length,
+          a = 0,
+          i = 0;
+      for (; a < cssTotal; ++a ) {
+        response.write('<link rel="stylesheet" href="' + css[a] + '" type="text/css" />');
+      }
+      if (preloadBody) {
+        /* loads libraries into <body> */
+        response.write('</head><body>');
+      }
+      for (; i < jsTotal; ++i ) {
+        response.write('<script src="' + js[i] + '"></script>');
+      }
+      if (!preloadBody) {
+        /* loads libraries into <head> */
+        response.write('</head><body>');
+      }
       for (var key in options.scripts) {
         response.write('<script src="' + key + '"></script>');
       }

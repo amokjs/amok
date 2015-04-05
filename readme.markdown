@@ -43,7 +43,19 @@ Additional features include an interactive mode (read–eval–print loop) and c
 
 --compiler <identifier>
   specify the compiler to spawn
-
+  
+--css <FILE(S)>
+  comma-separated list of css files to preload
+  
+--js <FILE(S)>
+  comma-separated list of JS files to preload
+  
+--head
+  inject preloaded JS into <head> (default)
+  
+--body
+  inject preloaded JS into <body>
+  
 -i, --interactive
   start in interactive mode
 
