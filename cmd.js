@@ -8,6 +8,7 @@ var path = require('path');
 var temp = require('temp');
 var repl = require('repl');
 var util = require('util');
+var colors = require('colors');
 
 var pkg = require('./package.json');
 
@@ -62,6 +63,14 @@ function compiler(callback, data) {
 }
 
 function watcher(callback, data) {
+  for (file in cmd.scripts) {
+    fs.lstat(cmd.scripts[file], function(err, stats) {
+      if (err && err.code === 'ENOENT') {
+        console.error('[ERROR] Input file "%s" was not found'.red, file);
+      }
+    });
+  }
+
   var watcher = amok.watch(cmd, function() {
     if (cmd.verbose) {
       console.info('File watcher ready');
