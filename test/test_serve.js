@@ -5,17 +5,14 @@ var test = require('tape');
 
 test('serve static script', function(t) {
   var options = {
-    cwd: 'test',
-    host: 'localhost',
-    port: 8888
+    cwd: 'test'
   };
 
-  var server = amok.serve(options, function(err) {
-    t.error(err);
-
+  var server = amok.serve(8888, 'localhost');
+  server.on('listening', function() {
     http.get({
-      host: options.host,
-      port: options.port,
+      host: 'localhost',
+      port: 8888,
       path: '/fixture/plain.js'
     }, function(response) {
       t.equal(response.statusCode, 200);
@@ -48,9 +45,8 @@ test('serve alias script', function(t) {
     }
   };
 
-  var server = amok.serve(options, function(err) {
-    t.error(err);
-
+  var server = amok.serve(9966, 'localhost', options);
+  server.on('listening', function() {
     http.get({
       host: 'localhost',
       port: 9966,
@@ -79,7 +75,6 @@ test('serve alias script', function(t) {
   });
 });
 
-
 test('serve file index', function(t) {
   var options = {
     cwd: 'test/fixture',
@@ -89,9 +84,8 @@ test('serve file index', function(t) {
     }
   };
 
-  var server = amok.serve(options, function(err) {
-    t.error(err);
-
+  var server = amok.serve(9966, 'localhost', options);
+  server.on('listening', function() {
     http.get({
       host: 'localhost',
       port: 9966,
@@ -125,9 +119,8 @@ test('serve generated index', function(t) {
     }
   };
 
-  var server = amok.serve(options, function(err) {
-    t.error(err);
-
+  var server = amok.serve(9966, 'localhost', options);
+  server.on('listening', function() {
     http.get({
       host: 'localhost',
       port: 9966,

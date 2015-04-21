@@ -141,7 +141,13 @@ function server(callback, data) {
 
   log.info('starting');
 
-  var server = amok.serve(data.program, function() {
+  var options = {
+    cwd: data.program.cwd,
+    scripts: data.compiler ? data.compiler.scripts : data.program.scripts
+  };
+
+  var server = amok.serve(data.program.port, data.program.host, options);
+  server.on('listening', function() {
     var address = server.address();
     log.info('listening', { host: address.address, port: address.port });
 
