@@ -54,6 +54,10 @@ test('compile to automatic file', function(t) {
         t.fail(data);
       });
 
+      exe.on('error', function(error) {
+        t.error(error);
+      });
+
       exe.on('ready', function(scripts) {
         var filenames = Object.keys(scripts);
         t.equal(filenames.length, 1);
