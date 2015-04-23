@@ -2,7 +2,7 @@ var amok = require('../');
 var test = require('tape');
 var fs = require('fs');
 
-test('compile to automatic file', function(t) {
+test('compile to temporary file', function(t) {
   var compilers = [
     {
       name: 'babel',
