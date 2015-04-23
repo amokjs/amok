@@ -75,8 +75,7 @@ function compiler(callback, data) {
   }
 
   log.info('spawn');
-
-  var compiler = amok.compile(data.program);
+  var compiler = amok.compile(data.program.compiler, data.program.args, data.program);
   compiler.on('ready', function() {
     if (error) {
       return callback(error);
