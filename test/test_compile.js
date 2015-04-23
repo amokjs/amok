@@ -26,6 +26,8 @@ test('compile with browserify', function(t) {
 
     t.equal(pathnames.length, 1);
     t.equal(pathnames[0], 'test/fixture/bundle.js');
+
+    exe.kill();
   });
 
   exe.on('close', function(code, signal) {
