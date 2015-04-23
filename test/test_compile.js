@@ -8,6 +8,11 @@ test('compile with browserify', function(t) {
   ];
 
   var exe = amok.compile('browserify', args);
+  exe.stderr.on('data', function(data) {
+    data = data.toString();
+    t.fail(data);
+  });
+
   exe.on('ready', function(scripts) {
     var filenames = Object.keys(scripts);
     t.equal(filenames.length, 1);
