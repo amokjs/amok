@@ -76,15 +76,12 @@ function compiler(callback, data) {
 
   log.info('spawn');
   var compiler = amok.compile(data.program.compiler, data.program.args, data.program);
-  compiler.on('ready', function() {
+  compiler.on('ready', function(scripts) {
     if (error) {
       return callback(error);
     }
 
     log.info('ok', { pid: compiler.pid });
-
-    data.program.scripts = {};
-    data.program.scripts[compiler.output] = path.basename(compiler.output);
 
     callback(null, compiler);
   });
