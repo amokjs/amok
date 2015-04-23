@@ -35,10 +35,14 @@
     "which": "^1.0.9"
   },
   "devDependencies": {
+    "babel": "^5.1.11",
+    "babel-loader": "^5.0.0",
     "babelify": "^6.0.2",
     "browserify": "^9.0.8",
+    "coffee-script": "^1.9.2",
     "tape": "^4.0.0",
-    "watchify": "^3.1.1"
+    "watchify": "^3.1.1",
+    "webpack": "^1.8.9"
   },
   "scripts": {
     "test": "node test"
