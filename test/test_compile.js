@@ -47,7 +47,7 @@ test('compile to automatic file', function(t) {
   ];
 
   compilers.forEach(function(compiler) {
-    t.test(function(t) {
+    t.test(compiler.name + ' ' + compiler.args.join(' '), function(t) {
       var exe = amok.compile(compiler.name, compiler.args, compiler.options);
       exe.stderr.on('data', function(data) {
         data = data.toString();
