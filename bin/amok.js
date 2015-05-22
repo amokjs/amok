@@ -21,7 +21,7 @@ program.option('-b, --browser <BROWSER>', 'specify browser');
 program.option('-c, --compiler <COMPILER>', 'specify compiler');
 program.option('-a, --host <HOST>', 'specify http host', 'localhost');
 program.option('-p, --port <PORT>', 'specify http port', 9966);
-program.option('-w, --watch <GLOB>', 'specify watch pattern', null);
+program.option('-w, --watch <GLOB>', 'specify watch pattern', '.');
 program.option('-i, --interactive', 'enable interactive mode');
 program.option('-v, --verbose', 'enable verbose mode');
 program.option('-d, --cwd <DIR>', 'change working directory', process.cwd());
@@ -88,14 +88,12 @@ async.auto({
       callback(null, compiler);
     });
   },
-  debugger: ['browser', 'watcher', function(callback, data) {
+  debugger: ['browser', function(callback, data) {
     var log = bole('debugger');
     log.info('connect');
 
     var bugger = amok.debug(program.debugPort, program.debugHost, {
-      scripts: program.scripts,
       url: program.url,
-      watcher: data.watcher,
     });
 
     bugger.once('attach', function() {
@@ -195,22 +193,16 @@ async.auto({
     });
   }],
 
-  watcher: ['compiler', function(callback, data) {
+  watcher: ['debugger', function(callback, data) {
     var log = bole('watch');
 
     log.info('start');
 
-    var patterns = [];
-    if (program.watch) {
-      patterns.push(program.watch);
-    }
+    var options = {
+      scripts: program.scripts,
+    };
 
-    var filenames = Object.keys(program.scripts);
-    if (filenames.length > 0) {
-      patterns.push(path.dirname(filenames[0]));
-    }
-
-    var watcher = amok.watch(patterns, function(error, watcher) {
+    var watcher = amok.watch(data.debugger, program.watch, options, function(error, watcher) {
       log.info('ok');
 
       watcher.on('add', function(filename) {
