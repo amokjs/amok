@@ -96,7 +96,6 @@ async.auto({
       scripts: program.scripts,
       url: program.url,
       watcher: data.watcher,
-      interactive: program.interactive
     });
 
     bugger.once('attach', function() {
@@ -233,6 +232,22 @@ async.auto({
       callback(null, watcher);
     });
   }],
+
+  repl: ['debugger', function(callback, data) {
+    var log = bole('repl');
+
+    if (!program.interactive) {
+      log('skip');
+      return callback(null, null);
+    }
+
+    log('start');
+
+    var options = {};
+    amok.repl(data.debugger, options, function(error, repl) {
+      callback(null, repl);
+    });
+  }]
 });
 
 process.on('SIGTERM', function() {
