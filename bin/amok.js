@@ -37,7 +37,7 @@ var scripts = program.args.filter(function(arg) {
 });
 
 var url = program.args.filter(function(arg) {
-  return arg.match(/^(http|https):\/\//);
+  return arg.match(/^(http|https|file):/);
 }).pop();
 
 program.scripts = scripts.reduce(function(object, value, key) {
