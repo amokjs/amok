@@ -13,9 +13,11 @@ testing and debugging for browsers through a remote connection.
 `--browser` option may be used in order to open the _url_ in a new browser
 process.
 
-With a _file_ **amok** will start a http server and connect to a browser tab with
-the address of the server, the `--cwd`, `--port` and `--host` host options
-dictate the root directory and address of the server.
+With a _file_ **amok** will start a http server and connect to a browser tab
+with the address of the server, the `--cwd`, `--port` and `--host` host options
+dictate the root directory and address of the server. If no index.html file is
+present one will be generated with the input files referenced as scripts in the
+body of the document.
 
 The `--compiler` option may be used in order to enable incremental preprocessing
 with a compiler, which will shadow the path of the input _file_.
