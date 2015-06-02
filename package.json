@@ -44,7 +44,7 @@
   },
   "scripts": {
     "man": "ronn -s toc -r5 man/*.markdown",
-    "test": "node test"
+    "test": "tape test/*.js"
   },
   "author": "Casper Beyer <caspervonb@qup.io>",
   "license": "MIT",
