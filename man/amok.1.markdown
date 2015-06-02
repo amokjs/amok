@@ -1,109 +1,158 @@
-# amok(1) -- Live editing, testing and debugging for the browser
+# amok -- hot code patching, testing and debugging for browsers
 ## SYNOPSIS
 
-`amok` [OPTION...] <URL>
-
-`amok` [OPTION...] <FILE>...
+| **amok** [OPTION ...] _URL_
+| **amok** [OPTION ...] _FILE_ [-- COMPILER OPTION ...]
 
 ## DESCRIPTION
 
-**Amok** enables live editing, testing and debugging for browsers through a remote debug connection.
+**Amok** is a debugging tool that enables editor agnostic hot code patching,
+testing and debugging for browsers through a remote connection.
 
-With a <URL>, **amok** will search for a page in the browser with a url matching that <URL> and connect to it.
+ With a _url_, **amok** will connect to a tab with the given _url_, the
+`--browser` option may be used in order to open the _url_ in a new browser
+process.
 
-With one or more input <FILES>, **amok** will add the <FILES> to the file system monitor and start a http server that serves files from the working directory with a in-memory dynamically generated *index.html* that references the input <FILES> with HTML script tags in the index body, placing an *index.html* file in the working directory will override the dynamic index generation. **amok** will search for a page in the browser with a url matching the server url and connect to it.
+With a _file_ **amok** will start a http server and connect to a browser tab with
+the address of the server, the `--cwd`, `--port` and `--host` host options
+dictate the root directory and address of the server.
 
-When **Amok** connects to the browser, it will mirror the console output stream to the standard output stream and refresh the source definitions of any scripts that are active in the browser runtime when the file system monitor detects a change to the source of the script.
+The `--compiler` option may be used in order to enable incremental preprocessing
+with a compiler, which will shadow the path of the input _file_.
 
-Changes to the file system will also be available as events on the global object within the browser environment, see amok-events(3).
+Output from the browser's console is redirected to standard output.
+The `--debug-port` and `--debug-host` options define the address where the
+remote debugging connection will be established.
+
+The `--hot`, `--watch` and `--interactive` options enable hot code patching,
+file system monitoring and an interactive read-eval-print-loop.
 
 ## OPTIONS
-These options control control how amok will interact with the file system.
 
-* `-d`, `--cwd`=<DIR>:
-  Change the working directory.
+`-r`, `--debug-port` _PORT_
+:   The port number where the remote debugging connection will be established,
+by default this will be on port `9222`.
 
-* `-w`, `--watch`=<GLOB>:
-  The file pattern for additional files to be added to the file monitoring process, the default value for <GLOB> is *'.'*.
+`-r`, `--debug-host` _PORT_
+:   The host name where the remote debugging connection will be established,
+by default this will be `localhost`.
 
-The options control how amok will establish a remote debug connection.
+`-b`, `--browser` _BROWSER_
+:   Open the input or server url in the specified browser which must be either
+`chrome` or `chromium`. The `CHROME_BIN` and `CHROMIUM_BIN` environment
+variables specify the the location of   the executable, if left undefined amok
+will search in `PATH` and the default installation path of the browser for the
+executable.
 
-* `-s`, `--debug-host`=<HOST>:
-  The hostname on which the remote debug connection will be established on,
-  the default <HOST> is *localhost*
+The `CHROME_FLAGS` and `CHROMIUM_FLAGS` can be used to specify a list of comma
+separated arguments to use when spawning the browser process.
 
-* `-r`, `--debug-port`=<PORT>:
-  The port number which the remote debug connection will be etablished on,
-  the default <PORT> is *9222*.
+`-c`, `--cwd` _DIR_
+:   Change the working directory to the specified directory, this directory
+serves as the root from which the http server serves its files from;
 
-* `-b`, `--browser`=<BROWSER>:
-  The browser to open with options configured so that it will accept debug connections on the port set by the `-r` or `--debug-port` option, the value of <BROWSER> must be `chrome` or `chromium`
+`-w`, `--watch` _GLOB_
+:   Enables monitoring of the given glob pattern in the file system,
+dispatching events on the window object
 
-* `-i`, `--interactive`:
-  Start in a read-eval-print-loop executing code in the remote context of the browser.
+`-t`, `--hot` _GLOB_
+:   Enables monitoring of input files and if specified the given glob pattern,
+hot patching functions without interrupting execution on file change.
 
-These options control the behavior of the http server.
+`-a, --port` _PORT_
+:   The port number where the http server will listen on,
+by default this will be `9966`.
 
-* `-c`, `--compiler`=<COMPILER>:
-  Uses the <COMPILER> to incrementally watch and preprocess input <FILES>, serving the preprocessed output in-place of the input <FILES>
+`-h`, `--host` _HOST_
+:   The hostname where the http server will listen for connections on,
+by default this will be `localhost`.
 
-  The value of BROWSER must be `babel`, `browserify`, `coffeescript`, `typescript` or `webpack`.
+`-i`, `--interactive`
+:   Starts **amok** in a read-eval-print-loop.
 
-* `-a`, `--host`=<HOST>:
-  The hostname which the http server will listen on,
-  the default HOST is *localhost*.
+`-v`, `--verbose`
+:   Enables verbose output mode.
 
-* `-p`, `--port`=<PORT>:
-  The port number which the http server will listen on,
-  the default PORT is *9222*.
+`-h`, `--help`
+:   Print **amok** usage information and exit.
 
-Miscellaneous options:
+`-V`, `--version`
+:   Print **amok** version information and exit.
 
-* `-v`, `--verbose`:
-  Write verbose logging messages to standard error.
+## BROWSER EVENTS
 
-* `-h`, `--help`:
-  Print **amok** usage information and exit.
+The `--watch` option enables several events on the window object which are
+dispatched when a file is added, changed or removed.
 
-* `-V`, `--version`:
-  Print **amok** version information and exit.
+```js
+addEventListener('add', function(event) {
+  console.log('%s added', event.detail.filename);
+});
+
+addEventListener('change', function(event) {
+  console.log('%s changed', event.detail.filename);
+});
+
+addEventListener('unlink', function(event) {
+  console.log('%s removed', event.detail.filename);
+});
+```
+
+The `--hot` option also enables an event on the window object which is
+dispatched after a hot code patch has been applied successfully.
+
+```
+addEventListener('patch', function(event) {
+  console.log('%s patched', event.detail.filename);
+  console.log('event.detail.source);
+});
+```
 
 ## ENVIRONMENT
 
-* `CHROME_BIN`:
-  The full path of the Google Chrome executable, this environment variable takes presedence when searching for the chrome executable on the file system.
+* `CHROME_BIN`
+:   The full path to a `Chromium` executable to use when opening a `chromium`
+    browser with the `--browser` option.
 
-* `CHROME_FLAGS`:
-  Additional flags to pass when starting Google Chrome executable.
+* `CHROME_FLAGS`
+:   List of comma separated command line flags to use then opening `Google Chrome` with the `--browser` option.
 
-* `CHROMIUM_BIN`:
-  The full path of the Chromium executable, this environment variable takes presedence when searching for the chrome executable on the file system.
+* `CHROMIUM_BIN`
+:   The full path to a `Chromium` executable to use when using the `chromium`
+    browser with the `--browser` option.
 
-* `CHROMIUM_FLAGS`:
-  Additional flags to pass when starting Chromium executable.
+* `CHROMIUM_FLAGS`
+:   List of comma separated command line flags to use then opening `chromium` with the `--browser` option.
 
 ## EXAMPLES
 
 Open chrome with a local file system URL
 
-    amok --browser chrome file://index.html
+```sh
+$ amok --browser chrome file://index.html
+```
 
 Open chrome with an external server URL
 
-    amok --browser chrome http://localhost:4000
+```sh
+$ amok --browser chrome http://localhost:4000
+```
 
-Open chrome with a bundle preprocessed by browserify and served via http at <http://localhost:9222/lib/index.js>
+Open chrome with a server and compiler
 
-    amok --browser chrome --compiler browserify lib/index.js
+```sh
+$ amok --browser chrome --compiler watchify lib/index.js
+```
 
 ## BUGS
 
-`Google Chrome` and `Chromium` only allow a single connection to the remote debugging protocol at any given time, and the `Chrome Developer Tools` are given priority so opening them will cause `amok` to disconnect (see http://crbug.com/129539)
+`Google Chrome` and `Chromium Browser` only allow a single client connection at any
+given time, and the `Chrome Developer Tools` count towards that limit and has
+priority access so inspecting the page in the browser will cause **amok** to
+disconnect, for more information see <http://crbug.com/129539>
 
 ## COPYRIGHT
 
 Copyright (C) 2015 Casper Beyer <http://caspervonb.com>
 
 ## SEE ALSO
-
-amok-browser(3)
