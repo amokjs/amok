@@ -1,53 +1,60 @@
-# Amok - Live code editing for JavaScript
-[![tips](https://img.shields.io/gratipay/caspervonb.svg?style=flat-square)](https://gratipay.com/caspervonb/)
-[![chat](https://img.shields.io/badge/gitter-join%20chat-green.svg?style=flat-square)](https://gitter.im/caspervonb/amok)
-[![npm](https://img.shields.io/npm/v/amok.svg?style=flat-square)](https://www.npmjs.org/package/amok)
 
-![out](https://cloud.githubusercontent.com/assets/157787/7122192/4aa2b03e-e24c-11e4-886a-5f58181b5dbd.gif)
+# amok -- rabid development workflow for the browser
 
-**Amok** is a free, cross-platform, open source standalone command line tool for rapid live development, testing and debugging of JavaScript web applications.
+**Amok** is a free open source, editor agnostic, cross-platform command line
+tool for fast incremental development, testing and debugging in web browsers.
 
-`amok` is written in JavaScript, runs on [node](https://nodejs.com) and is distributed via [npm](https://npmjs.com/amok).
+It features a zero configuration http server with default *index.html*
+generation, script preprocessing, console re-direction, hot patching of running
+code and a read-eval-print-loop.
 
-* Zero Configuration Server:
-  **Amok** has a zero configuration http development server built in that serves static scripts and static files, when no index.html is present, a default index will be generated on demand.
-
-* Script Preprocessing:
-  **Amok** can incrementally rebuild scripts with a variety of compilers that have a watch mode, including babel, browserify, coffeescript, typescript and webpack.
-
-* Live Code Editing:
-  Amok will refresh source definitions without reloading the page in the browser when the source files change, execution will remain uninterrupted and no side effects will take place, preserving the application state.
-
-* Console Mirroring:
-  Amok mirrors the browser's `console.log`, `console.info`, `console.error`, `console.trace` output stream to `stdout`
-
-* Interactive Mode:
-  Amok has an interactive mode, inspect and modify the browser environment or application state through the terminal in a read-eval-print-loop.
-
-* File Notifications:
-  Amok emits file notifications as events on the global window and process objects, allowing for further domain specific live editing and hot reloading specialization.
+[See the demonstration video](https://www.youtube.com/watch?v=gOC2yQFsnnE)
 
 ## INSTALLATION
-* Download and install [node](http://nodejs.com)
-* Run the following command:
 
-```
+```sh
 $ npm install amok
 ```
 
 ## USAGE
-```
-$ amok --browser chrome app.js
+
+```sh
+$ amok --browser --hot chrome index.js
 ```
 
 ## DOCUMENTATION
-See the [manpage](man/amok.1.markdown)
+
+See the [manual](man/readme.md)
 
 ## SUPPORT
-Join the [gitter chat](http://gitter.com/caspervonb/amok)
 
-## RELEASE HISTORY
-See the [changelog](changelog.markdown)
+* If you need help, ask in the [chat](http://gitter.im/caspervonb/amok).
+* If you found a bug, submit an [issue](https://github.com/caspervonb/amok/issues).
+* If you have an idea, submit an [issue](https://github.com/caspervonb/amok/issues).
+* If you’d like to ask a general question, submit an [issue](https://github.com/caspervonb/amok/issues).
+* If you want to contribute, submit a [pull request](https://github.com/caspervonb/amok/pulls).
+
+## RELEASES
+
+[See the changelog](changelog.markdown)
 
 ## LICENSE
+
 Copyright (c) 2015 Casper Beyer under the [MIT License](license.markdown)
+
+## SPONSORS
+
+![sponsor-logo-1] | ![sponsor-logo-2] | ![sponsor-logo-3]
+ ---------------- | ----------------- | ----------------
+
+The project is free and open source, and has been backed by a number of
+[individuals and organizations](backers.md), a special thanks goes out to
+[Webflow](http://webflow.com), [Apperson Labs](http://appersonlabs.com) and
+[Daft Developers](http://daftdevelopers.com).
+
+If you would like to support development of the project consider contributing via [Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=E6AAA7DLLQU36&lc=NO&item_name=amok%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted),
+**even a penny helps**.
+
+[sponsor-logo-1]: https://cloud.githubusercontent.com/assets/157787/7907794/8407646a-0870-11e5-9231-281f54ec1365.png
+[sponsor-logo-2]: https://cloud.githubusercontent.com/assets/157787/7907792/83f849a8-0870-11e5-829b-f77c7b1ac4fa.png
+[sponsor-logo-3]: https://cloud.githubusercontent.com/assets/157787/7907793/840666e6-0870-11e5-8620-5e6473301aab.png
