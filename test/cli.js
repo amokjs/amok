@@ -123,61 +123,6 @@ browsers.forEach(function(browser) {
     });
   });
 
-  test('open ' + browser + ' browser with ' + browser.toUpperCase() + '_FLAGS set', function(test) {
-    test.plan(3);
-
-    var args = [
-      'bin/amok.js',
-      '--debug-port',
-      '4000',
-      '--browser',
-      browser,
-      'file://' + __dirname + '/fixture/basic/index.html',
-    ];
-
-    test.comment(args.join(' '));
-
-    var env = { };
-    env['PATH'] = process.env['PATH'];
-
-    env[browser.toUpperCase() + '_FLAGS'] = [
-      'file://' + __dirname + '/fixture/basic/index.html',
-      'file://' + __dirname + '/fixture/basic/index.html'
-    ].join(' ');
-
-    var cli = child.spawn('node', args, {
-      env: env
-    });
-
-    cli.stderr.pipe(process.stderr);
-
-    cli.on('close', function() {
-      test.pass('close');
-    });
-
-    cli.stdout.setEncoding('utf-8');
-    cli.stdout.on('data', function(chunk) {
-      test.equal(chunk, 'ready\n');
-
-      http.get('http://localhost:4000/json', function(response) {
-        var body = '';
-        response.on('data', function(chunk) {
-          body += chunk;
-        });
-
-        response.on('end', function() {
-          var targets = JSON.parse(body);
-          targets = targets.filter(function(target) {
-            return target.url === 'file://' + __dirname + '/fixture/basic/index.html';
-          });
-
-          test.equal(targets.length, 3);
-          cli.kill();
-        });
-      });
-    });
-  });
-
   test('hot patch basic with file url in ' + browser, function(test) {
     test.plan(12);
 
