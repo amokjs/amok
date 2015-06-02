@@ -91,13 +91,13 @@ amok.connect(program.debugPort, program.debugHost, function(error) {
   }
 });
 
-// process.on('SIGTERM', function() {
-//   process.exit(0);
-// });
-//
-// process.on('SIGINT', function() {
-//   process.exit(0);
-// });
+process.on('SIGTERM', function() {
+  process.exit(0);
+});
+
+process.on('SIGINT', function() {
+  process.exit(0);
+});
 
 process.on('exit', function() {
   amok.close();
