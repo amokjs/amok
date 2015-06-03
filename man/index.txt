@@ -1,3 +1,2 @@
 # manuals
 amok(1)                   amok.1
-amok-browser(3)           amok-browser.3
