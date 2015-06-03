@@ -34,13 +34,13 @@
     "ware": "^1.3.0"
   },
   "devDependencies": {
-    "babel": "^5.4.7",
-    "coffee-script": "^1.9.2",
-    "node-libs-browser": "^0.5.2",
+    "babel": "5.4.7",
+    "coffee-script": "1.9.2",
+    "node-libs-browser": "0.5.2",
     "tape": "^4.0.0",
-    "typescript": "^1.5.0-beta",
-    "watchify": "^3.2.1",
-    "webpack": "^1.9.10"
+    "typescript": "1.5.0-beta",
+    "watchify": "3.2.1",
+    "webpack": "1.9.10"
   },
   "scripts": {
     "man": "ronn -s toc -r5 man/*.markdown",
