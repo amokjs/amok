@@ -1,12 +1,11 @@
-
 # amok -- rabid development workflow for the browser
 
 **Amok** is a free open source, editor agnostic, cross-platform command line
 tool for fast incremental development, testing and debugging in web browsers.
 
 It features a zero configuration http server with default *index.html*
-generation, script preprocessing, console re-direction, hot patching of running
-code and a read-eval-print-loop.
+generation, script preprocessing, console re-direction, hot patching functions
+in running code and a read-eval-print-loop.
 
 [See the demonstration video](https://www.youtube.com/watch?v=gOC2yQFsnnE)
 
