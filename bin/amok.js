@@ -35,8 +35,6 @@ program.option('-t, --hot [GLOB]', 'enable script hot patching');
 program.option('-i, --interactive', 'enable interactive mode');
 program.option('-d, --cwd <DIR>', 'change working directory', process.cwd());
 
-program.option('-v, --verbose', 'enable verbose mode');
-
 program.parse(process.argv);
 
 amok.set('cwd', program.cwd);
@@ -63,7 +61,7 @@ if (program.url) {
 }
 
 if (program.compiler) {
-  amok.use(amok.compiler(program.compiler, program.args));
+  amok.use(amok.compiler(program.compiler, program.args, process.stderr));
 }
 
 if (program.watch) {
@@ -75,7 +73,7 @@ if (program.hot) {
 }
 
 if (program.browser) {
-  amok.use(amok.browser(program.browser.command, program.browser.args));
+  amok.use(amok.browser(program.browser.command, program.browser.args, process.stderr));
 }
 
 if (program.interactive) {
