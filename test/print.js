@@ -1,6 +1,8 @@
 const amok = require('..');
 const test = require('tape');
 const stream = require('stream');
+const url = require('url');
+const path = require('path');
 
 const browsers = [
   'chrome',
@@ -16,7 +18,7 @@ browsers.forEach(function(browser, index) {
       test.pass('close');
     });
 
-    runner.set('url', 'file://' + __dirname + '/fixture/basic/index.html');
+    runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/basic/index.html')));
 
     var output = new stream.Writable();
     output._write = function(chunk, encoding, callback) {

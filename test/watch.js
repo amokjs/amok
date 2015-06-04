@@ -1,6 +1,8 @@
 const amok = require('..');
 const fs = require('fs');
 const test = require('tape');
+const url = require('url');
+const path = require('path');
 
 const browsers = [
   'chrome',
@@ -16,7 +18,7 @@ browsers.forEach(function(browser, index) {
       test.pass('close');
     });
 
-    runner.set('url', 'file://' + __dirname + '/fixture/watch-events/index.html');
+    runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/watch-events/index.html')));
 
     runner.set('cwd', 'test/fixture/watch-events');
     runner.use(amok.browser(browser));

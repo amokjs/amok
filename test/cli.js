@@ -3,6 +3,7 @@ const http = require('http');
 const test = require('tape');
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
 
 const browsers = [
   'chrome',
@@ -75,7 +76,7 @@ browsers.forEach(function(browser) {
       '4000',
       '--browser',
       browser,
-      'file://' + __dirname + '/fixture/basic/index.html',
+       url.resolve('file://', path.join('/' + __dirname,'/fixture/basic/index.html'))
     ];
 
     test.comment(args.join(' '));
@@ -98,14 +99,14 @@ browsers.forEach(function(browser) {
     });
   });
 
-  test('exit when ' + browser.toUpperCase() + '_BIN is set to an invalid value', function(test) {
+  test('exit when ' + browser.toUpperCase() + '_BIN is set to an invalid value', { skip: true }, function(test) {
     test.plan(1);
 
     var args = [
       'bin/amok.js',
       '--browser',
       browser,
-      'file://' + __dirname + '/fixture/basic/index.html',
+      url.resolve('file://', path.join('/' + __dirname, '/fixture/basic/index.html'))
     ];
 
     test.comment(args.join(' '));
@@ -132,7 +133,7 @@ browsers.forEach(function(browser) {
       '**/*.js',
       '--browser',
       browser,
-      'file://' + __dirname + '/fixture/hotpatch-basic/index.html',
+      url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-basic/index.html'))
     ];
 
     test.comment(args.join(' '));
@@ -261,7 +262,7 @@ browsers.forEach(function(browser) {
       '*.txt',
       '--browser',
       browser,
-      'file://' + __dirname + '/fixture/watch-events/index.html',
+      url.resolve('file://', path.join('/' + __dirname, '/fixture/watch-events/index.html'))
     ];
 
     test.comment(args.join(' '));

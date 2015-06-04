@@ -1,5 +1,7 @@
 const amok = require('..');
 const test = require('tape');
+const url = require('url');
+const path = require('path');
 
 const commands = [
   'chrome',
@@ -15,7 +17,7 @@ commands.forEach(function(command, index) {
       test.pass('close');
     });
 
-    runner.set('url', 'file://' + __dirname + '/fixture/basic/index.html');
+    runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/basic/index.html')));
 
     runner.use(amok.browser(command));
     runner.connect(4000 + index, 'localhost', function(error, inspector, runner) {

@@ -2,6 +2,8 @@ const amok = require('..');
 const fs = require('fs');
 const http = require('http');
 const test = require('tape');
+const url = require('url');
+const path = require('path');
 
 const browsers = [
   'chrome',
@@ -17,7 +19,7 @@ browsers.forEach(function(browser, index) {
       test.pass('close');
     });
 
-    runner.set('url', 'file://' + __dirname + '/fixture/hotpatch-basic/index.html');
+    runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-basic/index.html')));
 
     runner.use(amok.browser(browser));
     runner.use(amok.hotpatch('**/*.js'));
@@ -66,7 +68,7 @@ browsers.forEach(function(browser, index) {
     });
 
     runner.set('cwd', 'test/fixture/hotpatch-events');
-    runner.set('url', 'file://' + __dirname + '/fixture/hotpatch-events/index.html');
+    runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-events/index.html')));
 
     runner.use(amok.browser(browser));
     runner.use(amok.hotpatch('**/*.js'));
