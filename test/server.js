@@ -266,7 +266,7 @@ test('serve scripts', function(test) {
       http.get({
         port: 9966,
         hostname: 'localhost',
-        path: path.join('/', pathname)
+        path: url.resolve('/', pathname)
       }, function(response) {
         test.comment(pathname);
         test.equal(response.statusCode, 200);
