@@ -22,7 +22,7 @@ browsers.forEach(function(browser, index) {
     runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-basic/index.html')));
 
     runner.use(amok.browser(browser));
-    runner.use(amok.hotpatch('**/*.js'));
+    runner.use(amok.hotpatch('test/fixture/hotpatch-basic/*.js'));
 
     runner.connect(4000 + index, 'localhost', function(error, inspector, runner) {
       test.error(error);
@@ -71,7 +71,7 @@ browsers.forEach(function(browser, index) {
     runner.set('url', url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-events/index.html')));
 
     runner.use(amok.browser(browser));
-    runner.use(amok.hotpatch('**/*.js'));
+    runner.use(amok.hotpatch('test/fixture/hotpatch-events/*.js'));
 
     runner.connect(4000 + index, 'localhost', function(error, inspector, runner) {
       test.error(error);
