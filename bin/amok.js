@@ -6,8 +6,9 @@ const program = require('commander');
 program.version(require('../package.json').version);
 
 program.usage('[OPTION ...] <URL | FILE>');
-program.option('-s, --debug-host <HOST>', 'specify debug host', 'localhost');
-program.option('-r, --debug-port <PORT>', 'specify debug port', 9222);
+
+program.option('--debug-host <HOST>', 'specify debug host', 'localhost');
+program.option('--debug-port <PORT>', 'specify debug port', 9222);
 
 program.option('-b, --browser <BROWSER>', 'specify browser', function(value) {
   var args = process.env[value.toUpperCase() + '_FLAGS'];
@@ -26,10 +27,10 @@ program.option('-b, --browser <BROWSER>', 'specify browser', function(value) {
   };
 });
 
-program.option('-a, --host <HOST>', 'specify http host', 'localhost');
-program.option('-p, --port <PORT>', 'specify http port', 9966);
-program.option('-c, --compiler <COMPILER>', 'specify compiler');
+program.option('--http-host <HOST>', 'specify http host', 'localhost');
+program.option('--http-port <PORT>', 'specify http port', 9966);
 
+program.option('-c, --compiler <COMPILER>', 'specify compiler');
 program.option('-w, --watch <GLOB>', 'specify watch pattern');
 program.option('-t, --hot [GLOB]', 'enable script hot patching');
 program.option('-i, --interactive', 'enable interactive mode');
@@ -55,7 +56,7 @@ if (program.url) {
     return object;
   }, {}));
 
-  amok.use(amok.server(program.port, program.host));
+  amok.use(amok.server(program.httpPort, program.httpHost));
 } else {
   program.help();
 }

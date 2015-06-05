@@ -31,11 +31,11 @@ file system monitoring and an interactive read-eval-print-loop.
 
 ## OPTIONS
 
-`-r`, `--debug-port` _PORT_
+`--debug-port` _PORT_
 :   The port number where the remote debugging connection will be established,
 by default this will be on port `9222`.
 
-`-r`, `--debug-host` _PORT_
+`--debug-host` _PORT_
 :   The host name where the remote debugging connection will be established,
 by default this will be `localhost`.
 
@@ -61,12 +61,12 @@ dispatching events on the window object
 :   Enables monitoring of input files and if specified the given glob pattern,
 hot patching functions without interrupting execution on file change.
 
-`-a, --port` _PORT_
-:   The port number where the http server will listen on,
+`--http-port` _PORT_
+:   The port number where the http server will listen on when serving input *files*,
 by default this will be `9966`.
 
-`-h`, `--host` _HOST_
-:   The hostname where the http server will listen for connections on,
+`--http-host` _HOST_
+:   The hostname where the http server will be listening on when serving input *files*,
 by default this will be `localhost`.
 
 `-i`, `--interactive`
