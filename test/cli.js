@@ -67,63 +67,6 @@ test('cli print help', function(test) {
 });
 
 browsers.forEach(function(browser) {
-  test('open ' + browser + ' browser with debug port 4000', function(test) {
-    test.plan(3);
-
-    var args = [
-      'bin/amok.js',
-      '--debug-port',
-      '4000',
-      '--browser',
-      browser,
-       url.resolve('file://', path.join('/' + __dirname,'/fixture/basic/index.html'))
-    ];
-
-    test.comment(args.join(' '));
-
-    var cli = child.spawn('node', args);
-    cli.stderr.pipe(process.stderr);
-
-    cli.on('close', function() {
-      test.pass('close');
-    });
-
-    cli.stdout.setEncoding('utf-8');
-    cli.stdout.on('data', function(chunk) {
-      test.equal(chunk, 'ready\n');
-
-      http.get('http://localhost:4000/json', function(response) {
-        test.equal(response.statusCode, 200);
-        cli.kill();
-      });
-    });
-  });
-
-  test('exit when ' + browser.toUpperCase() + '_BIN is set to an invalid value', { skip: true }, function(test) {
-    test.plan(1);
-
-    var args = [
-      'bin/amok.js',
-      '--browser',
-      browser,
-      url.resolve('file://', path.join('/' + __dirname, '/fixture/basic/index.html'))
-    ];
-
-    test.comment(args.join(' '));
-
-    var env = {};
-    env['PATH'] = process.env['PATH'];
-    env[browser.toUpperCase() + '_BIN'] = 'this is not a browser';
-
-    var cli = child.spawn('node', args, {
-      env: env
-    });
-
-    cli.on('close', function(code) {
-      test.notEqual(code, 0);
-    });
-  });
-
   test('hot patch basic with file url in ' + browser, function(test) {
     test.plan(12);
 
