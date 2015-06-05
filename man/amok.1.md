@@ -1,8 +1,8 @@
 # amok -- hot code patching, testing and debugging for browsers
 ## SYNOPSIS
 
-| **amok** [OPTION ...] _URL_
-| **amok** [OPTION ...] _FILE_ [-- COMPILER OPTION ...]
+**amok** [OPTION ...] _URL_ <br>
+**amok** [OPTION ...] _FILE_ [-- COMPILER OPTION ...] <br>
 
 ## DESCRIPTION
 
