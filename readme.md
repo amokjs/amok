@@ -7,7 +7,7 @@ It features a zero configuration http server with default *index.html*
 generation, script preprocessing, console re-direction, hot patching functions
 in running code and a read-eval-print-loop.
 
-[See the demonstration video](https://www.youtube.com/watch?v=gOC2yQFsnnE)
+[See the demonstration video](https://www.youtube.com/watch?v=gOC2yQFsnnE).
 
 ## INSTALLATION
 
@@ -23,7 +23,7 @@ $ amok --browser --hot chrome index.js
 
 ## DOCUMENTATION
 
-See the [manual](man/readme.md)
+[See the manuals](man/readme.md).
 
 ## SUPPORT
 
@@ -35,11 +35,11 @@ See the [manual](man/readme.md)
 
 ## RELEASES
 
-[See the changelog](changelog.markdown)
+[See the changelog](changelog.md).
 
 ## LICENSE
 
-Copyright (c) 2015 Casper Beyer under the [MIT License](license.markdown)
+The project is licensed under the [MIT License](license.md).
 
 ## SPONSORS
 
