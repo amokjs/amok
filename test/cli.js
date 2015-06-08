@@ -294,17 +294,11 @@ browsers.forEach(function(browser) {
         test.equal(line, messages.shift(), line);
 
         if (line === 'ready') {
-          setTimeout(function() {
-            fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
-
-            setTimeout(function() {
-              fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
-
-              setTimeout(function() {
-                fs.unlinkSync('test/fixture/watch-events/file.txt');
-              }, 250);
-            }, 250);
-          }, 250);
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
+        } else if (line === 'add file.txt') {
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
+        } else if (line === 'change file.txt') {
+          fs.unlinkSync('test/fixture/watch-events/file.txt');
         }
 
         if (messages.length === 0) {
@@ -353,17 +347,11 @@ browsers.forEach(function(browser) {
         test.equal(line, messages.shift(), line);
 
         if (line === 'ready') {
-          setTimeout(function() {
-            fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
-
-            setTimeout(function() {
-              fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
-
-              setTimeout(function() {
-                fs.unlinkSync('test/fixture/watch-events/file.txt');
-              }, 250);
-            }, 250);
-          }, 250);
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
+        } else if (line === 'add test/fixture/watch-events/file.txt') {
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
+        } else if (line === 'change test/fixture/watch-events/file.txt') {
+          fs.unlinkSync('test/fixture/watch-events/file.txt');
         }
 
         if (messages.length === 0) {

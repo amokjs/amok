@@ -39,22 +39,18 @@ browsers.forEach(function(browser, index) {
       inspector.console.on('data', function(message) {
         test.equal(message.text, messages.shift(), message.text);
 
+        if (message.text === 'ready') {
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
+        } else if (message.text === 'add file.txt') {
+          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
+        } else if (message.text === 'change file.txt') {
+          fs.unlinkSync('test/fixture/watch-events/file.txt');
+        }
+
         if (messages.length === 0) {
           runner.close();
         }
       });
-
-      setTimeout(function() {
-        fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
-
-        setTimeout(function() {
-          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
-
-          setTimeout(function() {
-            fs.unlinkSync('test/fixture/watch-events/file.txt');
-          }, 250);
-        }, 250);
-      }, 250);
     });
   });
 });
