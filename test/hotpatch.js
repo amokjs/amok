@@ -58,7 +58,9 @@ browsers.forEach(function(browser, index) {
       });
     });
   });
+});
 
+browsers.forEach(function(browser, index) {
   test('hot patch events in ' + browser, function(test) {
     test.plan(5);
 

@@ -123,7 +123,9 @@ browsers.forEach(function(browser) {
       });
     });
   });
+});
 
+browsers.forEach(function(browser) {
   test('hot patch basic with server in ' + browser, function(test) {
     test.plan(12);
 
@@ -179,7 +181,9 @@ browsers.forEach(function(browser) {
       });
     });
   });
+});
 
+browsers.forEach(function(browser) {
   compilers.forEach(function(compiler, index) {
     test('hot patch script compiled with ' + compiler + ' in ' + browser, function(test) {
       test.plan(12);
@@ -248,7 +252,9 @@ browsers.forEach(function(browser) {
       });
     });
   });
+});
 
+browsers.forEach(function(browser) {
   test('print watch events with file url in ' + browser, function(test) {
     test.plan(5);
 
@@ -307,6 +313,9 @@ browsers.forEach(function(browser) {
       });
     });
   });
+});
+
+browsers.forEach(function(browser) {
   test('print watch events with server in ' + browser, function(test) {
     test.plan(5);
 
