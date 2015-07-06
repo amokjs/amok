@@ -320,11 +320,13 @@ browsers.forEach(function (browser) {
 
     var args = [
       'bin/amok.js',
+      '--cwd',
+      'test/fixture/watch-events',
       '--watch',
       '**/*.txt',
       '--browser',
       browser,
-      'test/fixture/watch-events/index.js',
+      'index.js',
     ];
 
     test.comment(args.join(' '));
@@ -337,9 +339,9 @@ browsers.forEach(function (browser) {
 
     var messages = [
       'ready',
-      'add test/fixture/watch-events/file.txt',
-      'change test/fixture/watch-events/file.txt',
-      'unlink test/fixture/watch-events/file.txt'
+      'add file.txt',
+      'change file.txt',
+      'unlink file.txt'
     ];
 
     cli.stdout.setEncoding('utf-8');
@@ -353,9 +355,9 @@ browsers.forEach(function (browser) {
 
         if (line === 'ready') {
           fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
-        } else if (line === 'add test/fixture/watch-events/file.txt') {
+        } else if (line === 'add file.txt') {
           fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
-        } else if (line === 'change test/fixture/watch-events/file.txt') {
+        } else if (line === 'change file.txt') {
           fs.unlinkSync('test/fixture/watch-events/file.txt');
         }
 
