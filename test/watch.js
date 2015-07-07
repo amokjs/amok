@@ -11,7 +11,7 @@ var browsers = [
 
 browsers.forEach(function (browser, index) {
   test('watch events in ' + browser, function (test) {
-    test.plan(7);
+    test.plan(9);
 
     var runner = amok.createRunner();
     runner.on('close', function () {
@@ -30,9 +30,11 @@ browsers.forEach(function (browser, index) {
 
       var values = [
         'ready',
-        'add file.txt',
-        'change file.txt',
-        'unlink file.txt'
+        'add dir',
+        'add dir/file.txt',
+        'change dir/file.txt',
+        'unlink dir/file.txt',
+        'unlink dir'
       ];
 
       runner.client.console.on('data', function (message) {
@@ -41,11 +43,15 @@ browsers.forEach(function (browser, index) {
         if (values[0] === undefined) {
           runner.close();
         } if (message.text === 'ready') {
-          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello', 'utf-8');
-        } else if (message.text === 'add file.txt') {
-          fs.writeFileSync('test/fixture/watch-events/file.txt', 'hello world', 'utf-8');
-        } else if (message.text === 'change file.txt') {
-          fs.unlinkSync('test/fixture/watch-events/file.txt');
+          fs.mkdirSync('test/fixture/watch-events/dir');
+        } else if (message.text === 'add dir') {
+          fs.writeFileSync('test/fixture/watch-events/dir/file.txt', 'hello', 'utf-8');
+        } else if (message.text === 'add dir/file.txt') {
+          fs.writeFileSync('test/fixture/watch-events/dir/file.txt', 'hello world', 'utf-8');
+        } else if (message.text === 'change dir/file.txt') {
+          fs.unlinkSync('test/fixture/watch-events/dir/file.txt');
+        } else if (message.text === 'unlink dir/file.txt') {
+          fs.rmdirSync('test/fixture/watch-events/dir');
         }
       });
 
