@@ -63,7 +63,7 @@ if (program.url) {
 
 if (program.compiler) {
   amok.use(amok.compiler(program.compiler, program.args, {
-    stdio: 'inherit'
+    stdio: ['ignore', 'ignore', 'inherit']
   }));
 }
 
@@ -77,7 +77,7 @@ if (program.hot) {
 
 if (program.browser) {
   amok.use(amok.browser(program.debugPort, program.browser.command, program.browser.args, {
-    stdio: 'inherit'
+    stdio: ['ignore', 'ignore', 'inherit']
   }));
 }
 

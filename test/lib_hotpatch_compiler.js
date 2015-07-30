@@ -5,7 +5,6 @@ var path = require('path');
 
 var browsers = [
   'chrome',
-  'chromium',
 ];
 
 browsers.forEach(function (browser, index) {

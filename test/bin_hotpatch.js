@@ -10,7 +10,6 @@ var bin = require('../package.json').bin['amok'];
 
 var browsers = [
   'chrome',
-  'chromium',
 ];
 
 browsers.forEach(function (browser) {
