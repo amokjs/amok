@@ -13,7 +13,7 @@
 quick server and browser launching, preprocessing support, console mirroring and a read-eval-print-loop.
 
 With a _URL_, **amok** will connect to a browser page with the given _url_,
-the `--browser` option may be used in order to open the _url_ in a browser before connecting to it.
+the `--browser` option may be used in order to open the _url_ in a browser before connecting to it. (Previously `--client`)
 
 With one or more _FILES_ **amok** will start a http server before connecting to a browser page with the given _url_,
 the `--cwd`, `--port` and `--host` host options dictate the root directory, port and address of the server.
