@@ -13,9 +13,13 @@ var browsers = [
   'chromium',
 ];
 
-browsers.forEach(function (browser) {
+browsers.forEach(function (browser, index) {
   var args = [
     bin,
+    '--debug-port',
+    9222 + index,
+    '--http-port',
+    9966 + index,
     '--cwd',
     'test/fixture/watch-events',
     '--watch',

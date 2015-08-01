@@ -13,7 +13,7 @@ var browsers = [
   'chromium',
 ];
 
-browsers.forEach(function (browser) {
+browsers.forEach(function (browser, index) {
   var entries = [
     'test/fixture/hotpatch-basic/index.js',
     url.resolve('file://', path.join('/' + __dirname, '/fixture/hotpatch-basic/index.html'))
@@ -22,6 +22,10 @@ browsers.forEach(function (browser) {
   entries.forEach(function (entry) {
     var args = [
       bin,
+      '--debug-port',
+      9222 + index,
+      '--http-port',
+      9966 + index,
       '--hot',
       '--browser',
       browser,

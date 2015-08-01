@@ -32,6 +32,10 @@ browsers.forEach(function (browser) {
 
     var args = [
       bin,
+      '--debug-port',
+      9222 + index,
+      '--http-port',
+      9966 + index,
       '--hot',
       '--compiler',
       compiler,
