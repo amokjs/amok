@@ -1,0 +1,14 @@
+os: Unstable
+
+install:
+  - ps: Install-Product node 0.12
+  - choco install chromium
+  - choco install googlechrome
+  - npm install
+  - cp c:\mingw\bin\mingw32-make.exe c:\mingw\bin\make.exe
+  - set PATH=C:\mingw\bin;%PATH%
+
+test_script:
+  - npm test
+
+build: off
