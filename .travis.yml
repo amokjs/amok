@@ -17,9 +17,11 @@ before_install:
       sudo apt-get install google-chrome-stable
       export DISPLAY=:99.0
       sh -e /etc/init.d/xvfb start
-    fi
-  - |
-    if [ "${TRAVIS_OS_NAME}" = "osx" ]
+    elif [ "${TRAVIS_OS_NAME}" = "osx" ]
     then
       brew install nvm
+      nvm install 0.12
+      brew install cask
+      brew cask install google-chrome
+      brew cask install chromium
     fi
