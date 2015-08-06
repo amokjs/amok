@@ -3,9 +3,19 @@ node_js:
   - "0.12"
 
 before_install:
+  # Install Google Chrome
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
   - sudo apt-get update
   - sudo apt-get install google-chrome-stable
+
+  # Chrome sandbox workaround
+  - export CHROME_SANDBOX=/opt/google/chrome/chrome-sandbox
+  - sudo rm -f $CHROME_SANDBOX
+  - sudo wget https://googledrive.com/host/0B5VlNZ_Rvdw6NTJoZDBSVy1ZdkE -O $CHROME_SANDBOX
+  - sudo chown root:root $CHROME_SANDBOX; sudo chmod 4755 $CHROME_SANDBOX
+  - sudo md5sum $CHROME_SANDBOX
+
+  # Start xvfb
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
