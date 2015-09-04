@@ -35,6 +35,7 @@ commands.forEach(function (command, index) {
       var filename = scripts[pathnames[0]];
 
       test.equal(pathnames.length, 1);
+      test.equal(pathnames[0], path.normalize(pathnames[0]));
       test.equal(fs.readFileSync(filename, 'utf-8'), fs.readFileSync(path.join(dirname, 'out.js'), 'utf-8'));
       runner.close();
     });
