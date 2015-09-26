@@ -40,8 +40,6 @@ commands.forEach(function (command, index) {
 });
 
 commands.forEach(function (command, index) {
-  var port = 4000 + index;
-
   test('error when port is used in ' + command, function (test) {
     test.plan(2);
     test.timeoutAfter(5000);
@@ -52,6 +50,9 @@ commands.forEach(function (command, index) {
     });
 
     server.on('listening', function() {
+      var address = server.address();
+      var port = address.port;
+
       var runner = amok.createRunner();
       server.on('close', function () {
         runner.close();
@@ -68,6 +69,6 @@ commands.forEach(function (command, index) {
       runner.connect(port, 'localhost');
     });
 
-    server.listen(port);
+    server.listen(0);
   });
 });
