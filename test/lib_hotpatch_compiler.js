@@ -20,7 +20,7 @@ browsers.forEach(function (browser, index) {
 
   compilers.forEach(function (compiler) {
     test('hot patch basic script compiled with ' + compiler + ' in ' + browser, function (test) {
-      test.plan(25);
+      test.plan(35);
 
       var dirname = 'test/fixture/hotpatch-' + compiler;
       var entries = fs.readdirSync(dirname).map(function (filename) {
@@ -71,8 +71,11 @@ browsers.forEach(function (browser, index) {
             source = source.replace(message.text, values[0]);
             test.notEqual(source, fs.readFileSync(entries[0]));
 
-            fs.writeFileSync(entries[0] + '.tmp', source, 'utf-8');
-            fs.renameSync(entries[0] + '.tmp', entries[0]);
+            setTimeout(function () {
+              fs.writeFile(entries[0], source, 'utf-8', function (error) {
+                test.error(error);
+              });
+            }, 1000);
           }
         });
 
