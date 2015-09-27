@@ -3,7 +3,7 @@
 ## AUXILIRARY
 
 - [GETTING STARTED](../getting_started.md)
-- [EXAMPLES](../examples/readme.md)
+- [EXAMPLES](../example/readme.md)
 
 ## MANUALS
 See the manual pages for further information
