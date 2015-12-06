@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "start": "amok --browser chrome --hot file://$PWD/index.html"
-  },
-  "dependencies": {
-    "amok": "file:../.."
-  }
-}

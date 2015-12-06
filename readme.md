@@ -17,7 +17,7 @@ Install through npm
 $ npm install --global amok
 ```
 
-Note that amok requires node.js **v0.12 or greater**
+Note that amok requires node.js **v5.0 or greater**
 
 ## USAGE
 
@@ -41,7 +41,7 @@ $ amok --browser chrome --hot file://$PWD/index.html
 
 ## DOCUMENTATION
 
-See the [getting started](getting_started.md) guide, [examples](example/readme.md) and [manuals](man/readme.md).
+See the [manuals](man/readme.md).
 
 ## SUPPORT
 

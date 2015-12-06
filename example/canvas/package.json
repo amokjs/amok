@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "start": "amok --browser chrome --interactive --hot index.js"
-  },
-  "dependencies": {
-    "amok": "file:../.."
-  }
-}
