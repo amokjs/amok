@@ -66,6 +66,7 @@ if (program.watch) {
 
 if (program.hot) {
   amok.use(amok.hotpatch());
+  amok.use(amok.hotpatch_css());
 }
 
 if (program.browser) {
