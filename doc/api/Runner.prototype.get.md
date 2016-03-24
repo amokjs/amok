@@ -23,4 +23,4 @@ Returns the value
 
 ## SEE ALSO
 
-[`amok.Runner`](amok.Runner.3.md)
+[`amok.Runner`](doc/api/Runner.md)

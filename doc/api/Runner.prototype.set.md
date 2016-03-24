@@ -25,5 +25,5 @@ Adds a new setting with a specified key and value
 
 ## SEE ALSO
 
-[amok.Runner](amok.Runner.3.md)
-[amok.Runner.prototype.get](amok.Runner.prototype.get.3.md)
+[amok.Runner](doc/api/Runner.md)
+[amok.Runner.prototype.get](doc/api/Runner.prototype.get.md)

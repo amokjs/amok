@@ -18,5 +18,5 @@ Closes the runner.
 
 ## SEE ALSO
 
-[`amok.Runner`](amok.Runner.3.md)
-[`amok.Runner.prototype.connect`](amok.Runner.prototype.connect.3.md)
+[`amok.Runner`](doc/api/Runner.md)
+[`amok.Runner.prototype.connect`](doc/api/Runner.prototype.connect.md)

@@ -53,4 +53,4 @@ window.addEventListener('fileRemove', function(event) {
 
 ## SEE ALSO
 
-[`amok.hotpatch`](amok.hotpatch.3.md)
+[`amok.hotpatch`](doc/api/hotpatch.md)

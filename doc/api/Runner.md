@@ -10,7 +10,7 @@ new Runner()
 
 ## PROPERTIES
 
-[amok.Runner.prototype](amok.Runner.prototype.3.md)
+[amok.Runner.prototype](doc/api/Runner.prototype.md)
 :   Allows the addition of properties to `amok.Runner` instances.
 
 ## EVENTS
@@ -23,22 +23,22 @@ new Runner()
 
 ## METHODS
 
-[amok.Runner.prototype.close](amok.Runner.prototype.close.3.md)
+[amok.Runner.prototype.close](doc/api/Runner.prototype.close.md)
 :   Closes the runner
 
-[amok.Runner.prototype.connect](amok.Runner.prototype.close.3.md)
+[amok.Runner.prototype.connect](doc/api/Runner.prototype.close.md)
 :   Runs middleware and connects the a client.
 
-[amok.Runner.prototype.get](amok.Runner.prototype.get.3.md)
+[amok.Runner.prototype.get](doc/api/Runner.prototype.get.md)
 :   Returns the value with the given key.
 
-[amok.Runner.prototype.run](amok.Runner.prototype.run.3.md)
+[amok.Runner.prototype.run](doc/api/Runner.prototype.run.md)
 :   Runs through the middleware stack.
 
-[amok.Runner.prototype.set](amok.Runner.prototype.set.3.md)
+[amok.Runner.prototype.set](doc/api/Runner.prototype.set.md)
 :   Sets a value for the given key.
 
-[amok.Runner.prototype.use](amok.Runner.prototype.use.3.md)
+[amok.Runner.prototype.use](doc/api/Runner.prototype.use.md)
 :   Adds a function to the middleware stack.
 
 ## DESCRIPTION
@@ -71,4 +71,4 @@ runner.connect(9222, 'localhost');
 
 ## SEE ALSO
 
-[amok.createRunner](amok.createRunner.3.md)
+[amok.createRunner](doc/api/createRunner.md)

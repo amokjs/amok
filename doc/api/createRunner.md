@@ -11,7 +11,7 @@ createRunner()
 ## DESCRIPTION
 
 Creates a new `amok.Runner` object, this is equivalent of calling the
-constructor [`amok.Runner`](amok.Runner.3.md) constructor.
+constructor [`amok.Runner`](doc/api/Runner.md) constructor.
 
 ## RETURN VALUE
 
@@ -36,4 +36,4 @@ amok.createRunner()
 
 ## SEE ALSO
 
-[`amok.Runner`](amok.Runner.3.md)
+[`amok.Runner`](doc/api/Runner.md)

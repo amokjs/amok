@@ -33,4 +33,4 @@ runner.use(function(client, runner, done) {
 
 ## SEE ALSO
 
-[`amok.Runner`](amok.Runner.3.md)
+[`amok.Runner`](doc/api/Runner.md)

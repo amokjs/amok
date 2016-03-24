@@ -45,4 +45,4 @@ runner.run(function(error, inspector, runner) {
 
 ## SEE ALSO
 
-[`amok.compiler`](amok.compiler.3.md)
+[`amok.compiler`](doc/api/compiler.md)
