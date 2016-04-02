@@ -22,4 +22,4 @@ Runs through the middleware stack, calling the `callback` function when done.
 
 ## SEE ALSO
 
-[`amok.Runner`](amok.Runner.3.md)
+[`amok.Runner`](doc/api/Runner.md)

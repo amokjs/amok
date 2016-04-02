@@ -56,4 +56,4 @@ window.addEventListener('scriptChange', function(event) {
 
 ## SEE ALSO
 
-[amok.watch](amok.watch.3.md)
+[amok.watch](doc/api/watch.md)

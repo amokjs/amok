@@ -31,4 +31,4 @@ The `callback` will be added on the `connect` event of the runner object.
 
 ## SEE ALSO
 
-[`amok.Runner.prototype.close`](amok.Runner.prototype.close.3.md)
+[`amok.Runner.prototype.close`](doc/api/Runner.prototype.close.md)

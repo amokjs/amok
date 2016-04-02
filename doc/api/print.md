@@ -35,4 +35,4 @@ runner.connect(9922, 'localhost');
 
 ## SEE ALSO
 
-[amok.repl](amok.repl.3.md)
+[amok.repl](doc/api/repl.md)

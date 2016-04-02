@@ -71,4 +71,4 @@ runner.connect(9222, 'localhost', function(error) {
 
 ## SEE ALSO
 
-[amok.Runner.prototype.use](amok.Runner.prototype.use.3.md)
+[amok.Runner.prototype.use](doc/api/Runner.prototype.use.md)

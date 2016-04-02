@@ -41,7 +41,7 @@ $ amok --browser chrome --hot file://$PWD/index.html
 
 ## DOCUMENTATION
 
-See the [getting started](getting_started.md) guide, [examples](example/readme.md) and [manuals](man/readme.md).
+See the [getting started](doc/guide/getting_started.md) guide, [examples](example/readme.md) and [manuals](doc/api/readme.md).
 
 ## SUPPORT
 
