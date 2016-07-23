@@ -24,12 +24,14 @@
   },
   "dependencies": {
     "browser_process": "^1.0.0",
+    "bugger": "^2.2.1",
     "chokidar": "^1.0.3",
     "commander": "^2.8.1",
     "compiler_process": "^1.0.0",
     "mime": "^1.3.4",
-    "rdbg": "^1.0.0",
+    "rdbg": "git://github.com/caspervonb/node-rdbg.git",
     "temp": "^0.8.1",
+    "which": "^1.2.1",
     "ws": "^0.7.2"
   },
   "devDependencies": {
